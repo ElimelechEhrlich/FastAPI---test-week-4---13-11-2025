@@ -6,6 +6,9 @@ class CaesarCipherItem(BaseModel):
     offset: int 
     mode: str
 
+class FenceCipherDecrypt(BaseModel):
+    text: str
+
 def names_file(name):
     with open('names.txt', 'a') as n:
         n.write(f'\n{name}')
@@ -44,3 +47,30 @@ def caesar_cipher(item:CaesarCipherItem):
         return caesar_cipher_decrypt(item.text, item.offset)
     else:
         return {"error": "mode is only encrypt or decrypt"}
+    
+
+def fence_cipher(text):
+    double = ''
+    oddnumbers = ''
+    for i in range(len(text)):
+        if text[i] == ' ':
+            text.remove(text[i])
+    for i in range(len(text)):
+        if i % 2 == 0:
+            double += text[i]
+        elif i % 2 != 0:
+            oddnumbers += text[i]
+    encrypt_text = double + oddnumbers
+    return {"encrypted_text": encrypt_text}
+    
+
+
+def fence_cipher_decrypt(text):
+    decrypt_text = ''
+    a = int((len(text))/2)
+    for i in range((len(text))/2):
+        decrypt_text += text[i]
+        decrypt_text += text[a]
+        a += 1
+    return {"decrypted": decrypt_text}
+
