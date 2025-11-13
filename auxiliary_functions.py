@@ -74,4 +74,3 @@ def fence_cipher_decrypt(text):
         a += 1
     return {"decrypted": decrypt_text}
 
-
