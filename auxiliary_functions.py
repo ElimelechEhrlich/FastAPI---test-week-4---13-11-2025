@@ -40,11 +40,11 @@ def caesar_cipher_decrypt(text, offset):
             pass
     return {"decrypted_text": decrypt_text}
 
-def caesar_cipher(item:CaesarCipherItem):
+def caesar_cipher(item:dict):
     if item.mode == 'encrypt':
-        return caesar_cipher_encrypt(item.text, item.offset)
+        return caesar_cipher_encrypt(item['text'], item["offset"])
     elif item.mode == 'decrypt':
-        return caesar_cipher_decrypt(item.text, item.offset)
+        return caesar_cipher_decrypt(item['text'], item["offset"])
     else:
         return {"error": "mode is only encrypt or decrypt"}
     
